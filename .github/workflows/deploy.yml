@@ -3,30 +3,33 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Change this to the branch you want to deploy from
+      - main  # Or the branch you want to trigger the deploy from
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify your Node.js version
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build the site
-      run: npm run build  # Adjust this command based on your static site generator
+      - name: Build the app
+        run: npm run build  # Ensure you have a build script
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GSEC_TOKEN }}
-        publish_dir: ./public  # Adjust this path based on where your build output is
-#Access your app via https://your-username.github.io/repository-name/
+      - name: Approve Deployment
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo "Waiting for approval..."
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}  # Use the secret you created
+          publish_dir: ./dist  # Update this to your build directory
+        environment: production  # Specify the environment for approval
