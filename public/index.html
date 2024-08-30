@@ -3,10 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Node.js App</title>
+    <title>Gen AI Chat Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 400px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .chat-messages {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .message p {
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .message.user p {
+            background-color: #007bff;
+            color: #fff;
+            text-align: right;
+            margin-left: auto;
+            max-width: 75%;
+        }
+
+        .message.bot p {
+            background-color: #e9e9eb;
+            color: #000;
+            text-align: left;
+            max-width: 75%;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Gen AI from Psitron Technologies Pvt Ltd</h1>
-    <p>This is a basic application using Express.js.</p>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            AI Chat Application
+        </div>
+        <div class="chat-messages">
+            <!-- Example Messages -->
+            <div class="message user">
+                <p>Hello, AI!</p>
+            </div>
+            <div class="message bot">
+                <p>Hello! How can I assist you today?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message..." />
+            <button>Send</button>
+        </div>
+    </div>
+
 </body>
 </html>
